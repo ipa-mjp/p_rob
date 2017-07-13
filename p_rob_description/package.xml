@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>p_rob_description</name>
+  <version>0.0.0</version>
+  <description>The p_rob_description package</description>
+
+  <maintainer email="bfb-ws@todo.todo">bfb-ws</maintainer>
+
+  <license>TODO</license>
+
+  <url type="website">http://ros.org/wiki/ur_description</url>	
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>urdf</run_depend>	
+
+  <export>
+  </export>
+</package>

@@ -1,0 +1,158 @@
+<?xml version="1.0" ?>
+<robot
+  name="p_rob">
+  <link
+    name="arm_base_link">
+    <inertial>
+      <origin
+        xyz="8.71294630254049E-05 0.508451295685675 -0.00113740271757783"
+        rpy="0 0 0" />
+      <mass
+        value="31.8818528911811" />
+      <inertia
+        ixx="4.65436888537887"
+        ixy="-0.0338576061896482"
+        ixz="3.29763186167614E-06"
+        iyy="0.165544422845209"
+        iyz="-0.00333281637307909"
+        izz="4.60911765357231" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://p_rob_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://p_rob_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+    <link
+    name="link12">
+    <inertial>
+      <origin
+        xyz="8.71294630254049E-05 0.277951295685675 -0.00113740271757783"
+        rpy="0 0 0" />
+      <mass
+        value="3.18818528911811" />
+      <inertia
+        ixx="4.65436888537887"
+        ixy="-0.0338576061896482"
+        ixz="3.29763186167614E-06"
+        iyy="0.165544422845209"
+        iyz="-0.00333281637307909"
+        izz="4.60911765357231" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://p_rob_description/meshes/link12.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.12549019607843137 0.2784313725490196 0.43529411764705883 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://p_rob_description/meshes/link12.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.223"
+      rpy="0 0 0" />
+    <parent
+      link="arm_base_link" />
+    <child
+      link="link12" />
+    <limit
+      effort="1000.0" 
+      lower="-2.9775317039023261" upper="2.9775317039023261" 
+      velocity="0.87266462599716477"/>
+    <axis
+      xyz="0 0 1" />
+  </joint>
+    <link
+    name="link23">
+    <inertial>
+      <origin
+        xyz="8.71294630254052E-05 0.000951295697065868 -0.00113740271757783"
+        rpy="0 0 0" />
+      <mass
+        value="3.18818528911811" />
+      <inertia
+        ixx="4.65436888537887"
+        ixy="-0.0338576061896481"
+        ixz="3.29763186167612E-06"
+        iyy="0.165544422845209"
+        iyz="-0.00333281637307909"
+        izz="4.60911765357231" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0.145"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://p_rob_description/meshes/link23.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.145"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://p_rob_description/meshes/link23.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.1395"
+      rpy="0 0 0" />
+    <parent
+      link="link12" />
+    <child
+      link="link23" />
+    <limit
+      effort="1000.0" 
+      lower="-1.9233528356977512" upper="1.9233528356977512" 
+      velocity="0.87266462599716477"/>
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>

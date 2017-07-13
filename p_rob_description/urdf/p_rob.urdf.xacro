@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find p_rob_description)/urdf/p_rob.transmission.xacro" />
+  <xacro:include filename="$(find p_rob_description)/urdf/p_rob.gazebo.xacro" />
+
+  <xacro:property name="pi" value="3.14159265" />
+	
+  <!-- Inertia parameters -->
+  <xacro:property name="mass" value="3.18818528911811" />  
+	
+  <xacro:property name="intertia_ixx" value="4.65436888537887" />  
+  <xacro:property name="intertia_ixy" value="-0.0338576061896482" />
+  <xacro:property name="intertia_ixz" value="3.29763186167614E-06" />
+  <xacro:property name="intertia_iyy" value="0.165544422845209" />
+  <xacro:property name="intertia_iyz" value="-0.00333281637307909" />
+  <xacro:property name="intertia_izz" value="4.60911765357231" />
+
+  <xacro:property name="origin_x" value="8.71294630254049E-05" />
+  <xacro:property name="origin_y" value="0.508451295685675" />
+  <xacro:property name="origin_z" value="-0.00113740271757783" />		
+
+
+  <xacro:macro name="p_rob_arm" params="prefix joint_limited
+  		 joint1_lower_limit:=-2.9775317039023261     joint1_upper_limit:=2.9775317039023261	    joint1_velocity_limit:=0.87266462599716477	
+		 joint2_lower_limit:=-1.9233528356977512     joint2_upper_limit:=1.9233528356977512	    joint2_velocity_limit:=0.87266462599716477
+		 joint3_lower_limit:=-2.0158552860534504     joint3_upper_limit:=2.0158552860534504	    joint3_velocity_limit:=0.87266462599716477
+		 joint4_lower_limit:=-2.981022362406315      joint4_upper_limit:=2.981022362406315	    joint4_velocity_limit:=0.87266462599716477
+		 joint5_lower_limit:=-2.0176006153054447     joint5_upper_limit:=2.0176006153054447	    joint5_velocity_limit:=0.87266462599716477
+		 joint6_lower_limit:=-2.9880036794142919     joint6_upper_limit:=2.9880036794142919	    joint6_velocity_limit:=1.7453292519943295
+		 gripper_lower_limit:=-2.9880036794142919    gripper_upper_limit:=2.9880036794142919	gripper_velocity_limit:=1.7453292519943295">
+
+
+    <link name="${prefix}base_link">
+      <visual>
+      	<origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/base_link.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/base_link.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="${origin_x} ${origin_y} ${origin_z}" rpy="0 0 0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>	
+
+    <joint name="${prefix}joint1" type="revolute">
+      <parent link="${prefix}base_link" />
+      <child link = "${prefix}link12" />
+      <origin xyz="0 0 0.223" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint1_lower_limit}" upper="${joint1_upper_limit}" effort="1000.0" velocity="${joint1_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}link12">
+      <visual>
+      	<origin xyz="0 0 0" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link12.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link12.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="8.71294630254049E-05 0.277951295685675 -0.00113740271757783" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>	
+    
+	<joint name="${prefix}joint2" type="revolute">
+      <parent link="${prefix}link12" />
+      <child link = "${prefix}link23" />
+      <origin xyz="0 0 0.1395" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 1 0" />
+      <limit lower="${joint2_lower_limit}" upper="${joint2_upper_limit}" effort="1000.0" velocity="${joint2_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}link23">
+      <visual>
+      	<origin xyz="0 0 0.145" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link23.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0.145" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link23.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="8.71294630254049E-05 0.000951295697065868 -0.00113740271757783" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>	
+    
+    
+   <joint name="${prefix}joint3" type="revolute">
+      <parent link="${prefix}link23" />
+      <child link = "${prefix}link34" />
+      <origin xyz="0 0 0.29" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 1 0" />
+      <limit lower="${joint3_lower_limit}" upper="${joint3_upper_limit}" effort="1000.0" velocity="${joint3_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}link34">
+      <visual>
+      	<origin xyz="0 0 0.1695" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link34.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0.1695" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link34.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="8.71294630254049E-05 -0.313548704302934 -0.00113740271757783" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>	
+    
+   <joint name="${prefix}joint4" type="revolute">
+      <parent link="${prefix}link34" />
+      <child link = "${prefix}link45" />
+      <origin xyz="0 0 0.1695" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint4_lower_limit}" upper="${joint4_upper_limit}" effort="1000.0" velocity="${joint4_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}link45">
+      <visual>
+      	<origin xyz="0 0 0" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link45.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0" rpy="${pi/2.0} 0 0" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link45.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="8.71294630254049E-05 -0.313548704302934 -0.00113740271757783" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>
+    
+   <joint name="${prefix}joint5" type="revolute">
+      <parent link="${prefix}link45" />
+      <child link = "${prefix}link56" />
+      <origin xyz="0 0 0.1405" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 1 0" />
+      <limit lower="${joint5_lower_limit}" upper="${joint5_upper_limit}" effort="1000.0" velocity="${joint5_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}link56">
+      <visual>
+      	<origin xyz="0 0 0.1405" rpy="${pi/2.0} 0 ${pi}" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link56.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.12549019607843137 0.2784313725490196 0.43529411764705883 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0.1405" rpy="${pi/2.0} 0 ${pi}" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link56.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="-8.71294630254049E-05 -0.588048704302934 0.00113740271757783" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>
+
+	<joint name="${prefix}joint6" type="revolute">
+      <parent link="${prefix}link56" />
+      <child link = "${prefix}link6G" />
+      <origin xyz="0 0 0.134" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit lower="${joint6_lower_limit}" upper="${joint6_upper_limit}" effort="1000.0" velocity="${joint6_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}link6G">
+      <visual>
+      	<origin xyz="0 0 0" rpy="${-pi/2.0} 0 ${-pi/2.0}" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link6G.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="0 0 0" rpy="${-pi/2.0} 0 ${-pi/2.0}" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/link6G.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="-0.00113740271757783 0.588048704302934 8.7129463025477E-05" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>
+
+	<joint name="${prefix}gripper" type="fixed">
+      <parent link="${prefix}link6G" />
+      <child link = "${prefix}gripper" />
+      <origin xyz="0.189 0 0.093" rpy="0.0 0.0 0.0" />
+      <axis xyz="0 0 0" />
+      <limit lower="${gripper_lower_limit}" upper="${gripper_upper_limit}" effort="1000.0" velocity="${gripper_velocity_limit}"/>
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <link name="${prefix}gripper">
+      <visual>
+      	<origin xyz="-0.189 0 0" rpy="${pi/2.0} 0 ${pi/2.0}" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/gripper.STL"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.898039215686275 0.917647058823529 0.929411764705882 1.0"/>
+        </material>
+      </visual>
+      <collision>
+		<origin xyz="-0.189 0 0" rpy="${pi/2.0} 0 ${pi/2.0}" />
+        <geometry>
+          <mesh filename="package://p_rob_description/meshes/gripper.STL"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="2.24196111270369E-06 -0.00408460946644196 -0.0510660065280277" rpy="0.0 0.0 0.0" />
+		<mass value="${mass}"/>
+		<inertia ixx="${intertia_ixx}" ixy="${intertia_ixy}" ixz="${intertia_ixz}" iyy="${intertia_iyy}" iyz="${intertia_iyz}" izz="${intertia_izz}"/>
+	  </inertial>    
+    </link>
+
+    <xacro:p_rob_arm_transmission prefix="${prefix}" />
+    <xacro:p_rob_arm_gazebo prefix="${prefix}" />
+
+  </xacro:macro>
+</robot>
