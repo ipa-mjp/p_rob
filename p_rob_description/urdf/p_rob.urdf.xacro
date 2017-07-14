@@ -22,12 +22,12 @@
 
 
   <xacro:macro name="p_rob_arm" params="prefix joint_limited
-  		 joint1_lower_limit:=-2.9775317039023261     joint1_upper_limit:=2.9775317039023261	    joint1_velocity_limit:=0.87266462599716477	
-		 joint2_lower_limit:=-1.9233528356977512     joint2_upper_limit:=1.9233528356977512	    joint2_velocity_limit:=0.87266462599716477
-		 joint3_lower_limit:=-2.0158552860534504     joint3_upper_limit:=2.0158552860534504	    joint3_velocity_limit:=0.87266462599716477
-		 joint4_lower_limit:=-2.981022362406315      joint4_upper_limit:=2.981022362406315	    joint4_velocity_limit:=0.87266462599716477
-		 joint5_lower_limit:=-2.0176006153054447     joint5_upper_limit:=2.0176006153054447	    joint5_velocity_limit:=0.87266462599716477
-		 joint6_lower_limit:=-2.9880036794142919     joint6_upper_limit:=2.9880036794142919	    joint6_velocity_limit:=1.7453292519943295
+  		 joint1_lower_limit:=${-pi/4.0}     joint1_upper_limit:=${2*pi}	        joint1_velocity_limit:=0.87266462599716477	
+		 joint2_lower_limit:=${-pi/2.0}     joint2_upper_limit:=${pi/2.0}	    joint2_velocity_limit:=0.87266462599716477
+		 joint3_lower_limit:=${-pi/3.0}     joint3_upper_limit:=${pi/3.0}	    joint3_velocity_limit:=0.87266462599716477
+		 joint4_lower_limit:=${-pi/2.0}     joint4_upper_limit:=${pi/2.0}	    joint4_velocity_limit:=0.87266462599716477
+		 joint5_lower_limit:=${-pi/2.0}     joint5_upper_limit:=${pi/2.0}	    joint5_velocity_limit:=0.87266462599716477
+		 joint6_lower_limit:=${-pi}         joint6_upper_limit:=${pi}	        joint6_velocity_limit:=1.7453292519943295
 		 gripper_lower_limit:=-2.9880036794142919    gripper_upper_limit:=2.9880036794142919	gripper_velocity_limit:=1.7453292519943295">
 
 
