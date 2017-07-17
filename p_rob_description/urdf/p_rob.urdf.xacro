@@ -22,12 +22,12 @@
 
 
   <xacro:macro name="p_rob_arm" params="prefix joint_limited
-  		 joint1_lower_limit:=${-0.5*pi}     joint1_upper_limit:=${pi}	        joint1_velocity_limit:=0.87266462599716477	
-		 joint2_lower_limit:=${-pi}     joint2_upper_limit:=${pi}	    joint2_velocity_limit:=0.87266462599716477
-		 joint3_lower_limit:=${-pi}     joint3_upper_limit:=${0.2}	    joint3_velocity_limit:=0.87266462599716477
-		 joint4_lower_limit:=${-2*pi}    joint4_upper_limit:=${-0.5}	    joint4_velocity_limit:=0.87266462599716477
-		 joint5_lower_limit:=${-pi}     joint5_upper_limit:=${pi}	    joint5_velocity_limit:=0.87266462599716477
-		 joint6_lower_limit:=${0.5-pi}        joint6_upper_limit:=${0.5*pi}	        joint6_velocity_limit:=1.7453292519943295
+  		 joint1_lower_limit:=-2.9775317039023261     joint1_upper_limit:=2.9775317039023261	        joint1_velocity_limit:=2.0
+		 joint2_lower_limit:=-1.9233528356977512     joint2_upper_limit:=1.9233528356977512	    joint2_velocity_limit:=2.0
+		 joint3_lower_limit:=-3.14159265     joint3_upper_limit:=3.14159265	    joint3_velocity_limit:=2.0
+		 joint4_lower_limit:=-6.2831853    joint4_upper_limit:=2.981022362406315	    joint4_velocity_limit:=2.0
+		 joint5_lower_limit:=-2.0176006153054447     joint5_upper_limit:=2.0176006153054447	    joint5_velocity_limit:=2.0
+		 joint6_lower_limit:=-2.9880036794142919        joint6_upper_limit:=2.9880036794142919	        joint6_velocity_limit:=2.0
 		 gripper_lower_limit:=-2.9880036794142919    gripper_upper_limit:=2.9880036794142919	gripper_velocity_limit:=1.7453292519943295">
 
 
@@ -246,9 +246,9 @@
 		</inertial>    
 	</link>
 
-	<joint name="${prefix}gripper" type="fixed">
+	<joint name="gripper" type="fixed">
 		<parent link="${prefix}link6G" />
-		<child link = "${prefix}gripper" />
+		<child link = "gripper" />
 		<origin xyz="0.189 0 0.093" rpy="0.0 0.0 0.0" />
 		<axis xyz="0 0 0" />
 		<limit lower="${gripper_lower_limit}" upper="${gripper_upper_limit}" effort="1000.0" velocity="${gripper_velocity_limit}"/>
@@ -256,7 +256,7 @@
 	</joint>
 
 
-	<link name="${prefix}gripper">
+	<link name="gripper">
 		<visual>
 			<origin xyz="-0.189 0 0" rpy="${pi/2.0} 0 ${pi/2.0}" />
 			<geometry>
