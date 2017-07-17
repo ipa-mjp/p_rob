@@ -71,13 +71,13 @@
 	</transmission>
     
     
-	<transmission name="${prefix}gripper_trans">
+	<transmission name="gripper_trans">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="${prefix}gripper">
+		<joint name="gripper">
 			<hardwareInterface>PositionJointInterface</hardwareInterface>
 			<hardwareInterface>VelocityJointInterface</hardwareInterface>
 		</joint>
-		<actuator name="${prefix}gripper_motor">
+		<actuator name="gripper_motor">
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
